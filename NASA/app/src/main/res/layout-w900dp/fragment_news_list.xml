@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:baselineAligned="false"
+    android:divider="?android:attr/dividerHorizontal"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    tools:context="by.yegorov.nasa.ui.news.NewsListActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_news_list_rv_main"
+        android:name="by.yegorov.nasa.NewsListFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="by.yegorov.nasa.ui.news.NewsListActivity"
+        tools:listitem="@layout/view_news_list_content"
+        android:layout_weight="0.3" />
+
+    <FrameLayout
+        android:id="@+id/fragment_news_list_fl_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7" />
+
+</LinearLayout>
