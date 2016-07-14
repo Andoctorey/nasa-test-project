@@ -40,7 +40,7 @@ android {
     }
 
     applicationVariants.all { variant ->
-        variant.buildConfigField "String", "NEWS_RSS", "\"https://www.nasa.gov/rss/dyn/breaking_news.rss\""
+        variant.buildConfigField "String", "NEWS_TEST_API", "\"http://rss2json.com/api.json?rss_url=https://www.nasa.gov/rss/dyn/breaking_news.rss\""
     }
 
     buildTypes {
@@ -100,6 +100,8 @@ dependencies {
 //    https://github.com/square/retrofit/issues/910
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'com.squareup:otto:1.3.8'
+
+    compile 'com.google.code.gson:gson:2.7'
 
     compile 'com.birbit:android-priority-jobqueue:1.3.5'
 }
