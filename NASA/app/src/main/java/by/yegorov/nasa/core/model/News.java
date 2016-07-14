@@ -41,8 +41,8 @@ public class News implements Parcelable {
         //for parcelable
     }
 
-    public String getTitle() {
-        return title;
+    public String getSafeTitle() {
+        return title != null ? title : "";
     }
 
     public String getAuthor() {

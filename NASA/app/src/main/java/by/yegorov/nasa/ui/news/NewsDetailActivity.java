@@ -1,8 +1,9 @@
 package by.yegorov.nasa.ui.news;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import by.yegorov.nasa.NasaApp;
 import by.yegorov.nasa.R;
+import by.yegorov.nasa.core.model.News;
 import by.yegorov.nasa.ui.base.BaseBusActivity;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -18,10 +20,10 @@ public class NewsDetailActivity extends BaseBusActivity {
     @BindView(R.id.activity_news_detail_toolbar)
     Toolbar toolbar;
 
-    public static void start(Context context, String id) {
-        Intent intent = new Intent(context, NewsDetailActivity.class);
-        intent.putExtra(NewsDetailFragment.ARG_ITEM_ID, id);
-        context.startActivity(intent);
+    public static void start(Activity activity, News item) {
+        Intent intent = new Intent(activity, NewsDetailActivity.class);
+        intent.putExtra(NewsDetailFragment.ARG_ITEM, item);
+        activity.startActivity(intent);
     }
 
     @Override
@@ -37,7 +39,8 @@ public class NewsDetailActivity extends BaseBusActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        News news = getIntent().getParcelableExtra(NewsDetailFragment.ARG_ITEM);
+        toolbar.setTitle(news.getSafeTitle());
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -45,10 +48,7 @@ public class NewsDetailActivity extends BaseBusActivity {
         }
 
         if (savedInstanceState == null) {
-            Bundle arguments = new Bundle();
-            arguments.putString(NewsDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(NewsDetailFragment.ARG_ITEM_ID));
-            NewsDetailFragment fragment = new NewsDetailFragment();
-            fragment.setArguments(arguments);
+            Fragment fragment = NewsDetailFragment.create(news);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.activity_news_scroll_view, fragment)
                     .commit();

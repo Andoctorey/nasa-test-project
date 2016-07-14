@@ -12,19 +12,24 @@ import java.util.List;
 import butterknife.BindView;
 import by.yegorov.nasa.NasaApp;
 import by.yegorov.nasa.R;
-import by.yegorov.nasa.core.model.DummyContent;
+import by.yegorov.nasa.core.model.News;
 import by.yegorov.nasa.ui.base.BaseRecyclerViewAdapter;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class NewsAdapter extends BaseRecyclerViewAdapter {
 
     private final ViewHolder.OnViewHolderClicksListener listener;
-    private List<DummyContent.DummyItem> items = new ArrayList<>();
+    private List<News> items = new ArrayList<>();
 
-    public NewsAdapter(Context context, List<DummyContent.DummyItem> items, ViewHolder.OnViewHolderClicksListener listener) {
+    public NewsAdapter(Context context, List<News> items, ViewHolder.OnViewHolderClicksListener listener) {
         super(context);
         this.items = items;
         this.listener = listener;
+    }
+
+    public void onChanged(List<News> items) {
+        this.items = items;
+        notifyDataSetChanged();
     }
 
     @SuppressWarnings("unused")
@@ -68,9 +73,9 @@ public class NewsAdapter extends BaseRecyclerViewAdapter {
     @Override
     public void onBindViewHolder(BaseRecyclerViewAdapter.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        DummyContent.DummyItem item = items.get(position);
-        viewHolder.tvId.setText(item.id);
-        viewHolder.tvContent.setText(item.content);
+        News item = items.get(position);
+        viewHolder.tvId.setText(item.getSafeTitle());
+        viewHolder.tvContent.setText(item.getLink());
     }
 
     @Override

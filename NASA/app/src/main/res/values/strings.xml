@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">NASA</string>
-    <string name="title_news_detail">News Detail</string>
+    <string name="app_name">NASA News</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="server_error">Problem connecting with server</string>
 </resources>

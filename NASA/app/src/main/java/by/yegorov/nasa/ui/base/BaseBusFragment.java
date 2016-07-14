@@ -1,11 +1,13 @@
 package by.yegorov.nasa.ui.base;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
+import by.yegorov.nasa.R;
 import timber.log.Timber;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -43,6 +45,26 @@ public abstract class BaseBusFragment extends BaseFragment {
             isRegistered = true;
             Timber.i("bus.register " + this);
             bus.register(this);
+        }
+    }
+
+    protected ProgressDialog progressDialog;
+
+    private void initProgressDialog() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage(getString(R.string.please_wait));
+        progressDialog.setCancelable(true);
+    }
+
+    protected void progress(boolean show) {
+        if (show) {
+            if (progressDialog == null) {
+                initProgressDialog();
+            }
+
+            progressDialog.show();
+        } else if (progressDialog != null) {
+            progressDialog.dismiss();
         }
     }
 }
