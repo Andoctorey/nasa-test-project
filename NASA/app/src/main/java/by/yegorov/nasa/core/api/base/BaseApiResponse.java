@@ -12,4 +12,12 @@ public class BaseApiResponse<Data> {
 
     @SerializedName("items")
     private List<Data> items;
+
+    public List<Data> getItems() {
+        return items;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }

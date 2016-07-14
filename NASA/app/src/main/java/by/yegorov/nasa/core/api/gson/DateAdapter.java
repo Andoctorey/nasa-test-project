@@ -20,7 +20,7 @@ import by.yegorov.nasa.core.utils.ExceptionUtils;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class DateAdapter implements JsonSerializer<Date>, JsonDeserializer<Date> {
 
-    final DateFormat df = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm Z'", Locale.getDefault());//Thu, 14 Jul 2016 15:20 EDT
+    final DateFormat df = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm z", Locale.getDefault());//Thu, 14 Jul 2016 15:20 EDT
 
     public DateAdapter() {
         df.setTimeZone(TimeZone.getTimeZone("UTC"));

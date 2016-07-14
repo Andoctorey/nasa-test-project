@@ -6,9 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
+import com.path.android.jobqueue.JobManager;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import by.yegorov.nasa.NasaApp;
 import by.yegorov.nasa.R;
+import by.yegorov.nasa.core.job.news.GetNewsJob;
 import by.yegorov.nasa.core.model.DummyContent;
 import by.yegorov.nasa.ui.base.BaseBusActivity;
 
@@ -24,6 +29,9 @@ public class NewsListActivity extends BaseBusActivity implements NewsAdapter.Vie
     @Nullable
     @BindView(R.id.fragment_news_list_fl_container)
     FrameLayout container;
+
+    @Inject
+    JobManager jobManager;
 
     private boolean twoPane;
 
@@ -49,6 +57,12 @@ public class NewsListActivity extends BaseBusActivity implements NewsAdapter.Vie
         if (container != null) {
             twoPane = true;
         }
+
+        loadData();
+    }
+
+    private void loadData() {
+        jobManager.addJob(new GetNewsJob());
     }
 
     @Override
