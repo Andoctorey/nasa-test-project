@@ -18,10 +18,10 @@ import butterknife.BindView;
 import by.yegorov.nasa.NasaApp;
 import by.yegorov.nasa.R;
 import by.yegorov.nasa.core.model.DummyContent;
-import by.yegorov.nasa.ui.base.BaseActivity;
+import by.yegorov.nasa.ui.base.BaseBusActivity;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class NewsListActivity extends BaseActivity {
+public class NewsListActivity extends BaseBusActivity {
 
     @BindView(R.id.activity_news_toolbar)
     Toolbar toolbar;

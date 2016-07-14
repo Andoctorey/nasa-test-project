@@ -9,10 +9,10 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import by.yegorov.nasa.NasaApp;
 import by.yegorov.nasa.R;
-import by.yegorov.nasa.ui.base.BaseActivity;
+import by.yegorov.nasa.ui.base.BaseBusActivity;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class NewsDetailActivity extends BaseActivity {
+public class NewsDetailActivity extends BaseBusActivity {
 
     @BindView(R.id.activity_news_detail_toolbar)
     Toolbar toolbar;
