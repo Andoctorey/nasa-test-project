@@ -3,19 +3,34 @@ package by.yegorov.nasa.ui.news;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import butterknife.BindView;
+import by.yegorov.nasa.NasaApp;
 import by.yegorov.nasa.R;
+import by.yegorov.nasa.ui.base.BaseActivity;
 
-public class NewsDetailActivity extends AppCompatActivity {
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class NewsDetailActivity extends BaseActivity {
+
+    @BindView(R.id.activity_news_detail_toolbar)
+    Toolbar toolbar;
+
+    @Override
+    protected int setContentView() {
+        return R.layout.activity_news_detail;
+    }
+
+    @Override
+    protected void inject() {
+        NasaApp.getComponent(this).inject(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_news_detail_toolbar);
+
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

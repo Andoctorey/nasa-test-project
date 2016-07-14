@@ -3,44 +3,60 @@ package by.yegorov.nasa.ui.news;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import by.yegorov.nasa.NasaApp;
 import by.yegorov.nasa.R;
 import by.yegorov.nasa.core.model.DummyContent;
+import by.yegorov.nasa.ui.base.BaseActivity;
 
-public class NewsListActivity extends AppCompatActivity {
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class NewsListActivity extends BaseActivity {
+
+    @BindView(R.id.activity_news_toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.fragment_news_list_rv_main)
+    RecyclerView recyclerView;
+
+    @Nullable
+    @BindView(R.id.fragment_news_list_fl_container)
+    FrameLayout container;
 
     private boolean twoPane;
 
     @Override
+    protected int setContentView() {
+        return R.layout.activity_news_list;
+    }
+
+    @Override
+    protected void inject() {
+        NasaApp.getComponent(this).inject(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_news_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        View recyclerView = findViewById(R.id.fragment_news_list_rv_main);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
 
-        if (findViewById(R.id.fragment_news_list_fl_container) != null) {
+        if (container != null) {
             twoPane = true;
         }
-    }
-
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
     }
 
     public class SimpleItemRecyclerViewAdapter
