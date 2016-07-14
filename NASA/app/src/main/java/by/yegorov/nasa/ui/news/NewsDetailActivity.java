@@ -1,5 +1,6 @@
 package by.yegorov.nasa.ui.news;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -16,6 +17,12 @@ public class NewsDetailActivity extends BaseBusActivity {
 
     @BindView(R.id.activity_news_detail_toolbar)
     Toolbar toolbar;
+
+    public static void start(Context context, String id) {
+        Intent intent = new Intent(context, NewsDetailActivity.class);
+        intent.putExtra(NewsDetailFragment.ARG_ITEM_ID, id);
+        context.startActivity(intent);
+    }
 
     @Override
     protected int setContentView() {

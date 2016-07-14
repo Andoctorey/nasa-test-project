@@ -14,6 +14,7 @@ import by.yegorov.nasa.R;
 import by.yegorov.nasa.core.model.DummyContent;
 import by.yegorov.nasa.ui.base.BaseBusFragment;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class NewsDetailFragment extends BaseBusFragment {
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -26,6 +27,14 @@ public class NewsDetailFragment extends BaseBusFragment {
     TextView textView;
 
     private DummyContent.DummyItem dummyItem;
+
+    public static NewsDetailFragment create(String id) {
+        NewsDetailFragment fragment = new NewsDetailFragment();
+        Bundle arguments = new Bundle();
+        arguments.putString(NewsDetailFragment.ARG_ITEM_ID, id);
+        fragment.setArguments(arguments);
+        return fragment;
+    }
 
     public NewsDetailFragment() {
     }
@@ -49,10 +58,14 @@ public class NewsDetailFragment extends BaseBusFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_news_detail, container, false);
+        return inflater.inflate(R.layout.fragment_news_detail, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         if (dummyItem != null) {
             textView.setText(dummyItem.details);
         }
-        return rootView;
     }
 }
