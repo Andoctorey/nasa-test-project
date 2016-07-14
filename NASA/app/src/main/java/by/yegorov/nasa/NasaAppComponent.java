@@ -1,6 +1,7 @@
 package by.yegorov.nasa;
 
 
+import by.yegorov.nasa.core.api.ApiModule;
 import by.yegorov.nasa.core.dagger.PerApp;
 import by.yegorov.nasa.ui.news.NewsAdapter;
 import by.yegorov.nasa.ui.news.NewsDetailActivity;
@@ -12,7 +13,8 @@ import dagger.Component;
 @Component(
         modules = {
                 NasaModule.class,
-                AndroidModule.class
+                AndroidModule.class,
+                ApiModule.class
         }
 )
 public interface NasaAppComponent {
