@@ -82,6 +82,9 @@ public class NewsListActivity extends BaseBusActivity implements NewsAdapter.Vie
         if (event.newses != null && newsAdapter != null) {
             news = event.newses;
             newsAdapter.onChanged(news);
+            if (twoPane && news.size() > 0) {
+                onNewsItemClick(0);
+            }
         }
     }
 
