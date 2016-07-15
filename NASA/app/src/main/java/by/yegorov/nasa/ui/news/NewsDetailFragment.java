@@ -3,6 +3,7 @@ package by.yegorov.nasa.ui.news;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,11 @@ public class NewsDetailFragment extends BaseBusFragment {
     @BindView(R.id.activity_news_toolbar_layout)
     CollapsingToolbarLayout appBarLayout;
 
-    @BindView(R.id.fragment_news_detail_tv_main)
-    TextView textView;
+    @BindView(R.id.fragment_news_detail_tv_date)
+    TextView tvDate;
+
+    @BindView(R.id.fragment_news_detail_tv_description)
+    TextView tvDescription;
 
     private News item;
 
@@ -58,8 +62,10 @@ public class NewsDetailFragment extends BaseBusFragment {
                 appBarLayout.setTitle(item.getSafeTitle());
             }
         }
-        if (item != null) {
-            textView.setText(item.getDescription());
+
+        tvDescription.setText(item.getSafeDescription());
+        if (item.getPubDate() != null) {
+            tvDate.setText(DateUtils.formatDateTime(getContext(), item.getPubDate().getTime(), DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE));
         }
     }
 }
