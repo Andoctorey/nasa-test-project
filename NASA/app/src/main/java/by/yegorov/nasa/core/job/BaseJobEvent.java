@@ -31,15 +31,17 @@ public abstract class BaseJobEvent {
     }
 
     protected static String handleRetrofitError(RetrofitError error) {
-        String message = "";
-        if (error.getKind() != RetrofitError.Kind.NETWORK && (error.getResponse() == null)) {
+        if (error.getKind() != RetrofitError.Kind.NETWORK && (error.getResponse() == null || error.getResponse().getStatus() != 504)) {
+            String message = "";
             Response response = error.getResponse();
             if (response != null) {
                 message += " " + response.getStatus();
             }
             message += " " + error.getUrl();
             ExceptionUtils.handleException(error, message);
+            return message;
         }
-        return message;
+        return null;
     }
 }
+
