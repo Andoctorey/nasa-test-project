@@ -4,10 +4,15 @@ package by.yegorov.nasa.ui.news;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import by.yegorov.nasa.NasaApp;
@@ -17,6 +22,9 @@ import by.yegorov.nasa.ui.base.BaseRecyclerViewAdapter;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class NewsAdapter extends BaseRecyclerViewAdapter {
+
+    @Inject
+    ImageLoader imageLoader;
 
     private final ViewHolder.OnViewHolderClicksListener listener;
     private List<News> items = new ArrayList<>();
@@ -37,11 +45,11 @@ public class NewsAdapter extends BaseRecyclerViewAdapter {
 
         private final OnViewHolderClicksListener listener;
 
-        @BindView(R.id.view_news_list_content_tv_id)
-        TextView tvId;
+        @BindView(R.id.view_news_list_content_tv_title)
+        TextView title;
 
-        @BindView(R.id.view_news_list_content_tv_content)
-        TextView tvContent;
+        @BindView(R.id.view_news_list_content_iv_image)
+        ImageView image;
 
         public ViewHolder(View view, OnViewHolderClicksListener listener) {
             super(view);
@@ -74,8 +82,8 @@ public class NewsAdapter extends BaseRecyclerViewAdapter {
     public void onBindViewHolder(BaseRecyclerViewAdapter.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
         News item = items.get(position);
-        viewHolder.tvId.setText(item.getSafeTitle());
-        viewHolder.tvContent.setText(item.getLink());
+        viewHolder.title.setText(item.getSafeTitle());
+        imageLoader.displayImage(item.getSafeEnclosure().getLink(), viewHolder.image);
     }
 
     @Override

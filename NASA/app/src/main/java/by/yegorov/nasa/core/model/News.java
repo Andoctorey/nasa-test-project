@@ -57,8 +57,8 @@ public class News implements Parcelable {
         return description;
     }
 
-    public NewsEnclosure getEnclosure() {
-        return enclosure;
+    public NewsEnclosure getSafeEnclosure() {
+        return enclosure != null ? enclosure : new NewsEnclosure();
     }
 
     public String getGuid() {

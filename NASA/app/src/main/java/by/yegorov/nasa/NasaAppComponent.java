@@ -3,6 +3,7 @@ package by.yegorov.nasa;
 
 import by.yegorov.nasa.core.api.ApiModule;
 import by.yegorov.nasa.core.dagger.PerApp;
+import by.yegorov.nasa.core.image.ImageModule;
 import by.yegorov.nasa.core.job.news.GetNewsJob;
 import by.yegorov.nasa.ui.news.NewsAdapter;
 import by.yegorov.nasa.ui.news.NewsDetailActivity;
@@ -15,7 +16,8 @@ import dagger.Component;
         modules = {
                 NasaModule.class,
                 AndroidModule.class,
-                ApiModule.class
+                ApiModule.class,
+                ImageModule.class
         }
 )
 public interface NasaAppComponent {
