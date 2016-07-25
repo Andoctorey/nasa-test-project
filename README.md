@@ -1,5 +1,5 @@
-# nasa-test-project
-Test 3h project
+# nasa-test-project(3h)
+
 Write simple app which will show content of https://www.nasa.gov/rss/dyn/breaking_news.rss. 
 This of this as a simple news viewer
 1. Convert XML with http://rss2json.com/
